@@ -1,7 +1,7 @@
 import { Path } from "@/constants/path";
 import Image from "next/image";
 import Link from "next/link";
-import homeimage from "../../public/image1.png";
+import homeimage from "../../public/image.png";
 
 export default function Home() {
   return (
