@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-6">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="">
-            <a
+            <Link
               href={Path.BASE}
               className="flex flex-row gap-4 justify-start"
             >
@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-lg font-semibold text-gray-900">
                 Чіп Чендж
               </span>
-            </a>
+            </Link>
             <p className="text-xs leading-6 text-[#707C87]">
               04128, м.Київ, вул. Хрещатик, 19
             </p>
@@ -84,12 +84,12 @@ export default function Footer() {
               <div className="mt-10 md:mt-0">
               <div className="flex space-x-6">
               {navigation.social.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                 >
                   <item.icon className="h-6 w-6 text-gray-900"/>
-                </a>
+                </Link>
               ))}
             </div>
 

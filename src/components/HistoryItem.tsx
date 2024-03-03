@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Arrow from "../../public/arrow.svg";
-import { Currency } from "@/constants/currency";
+import { AppCurrency } from "@/types";
 
 interface Props {
   date: string;
   from: number;
   to: number;
-  fromCurr: Currency;
-  toCurr: Currency;
+  fromCurr: AppCurrency;
+  toCurr: AppCurrency;
 }
 
 const HistoryItem = ({ date, from, fromCurr, to, toCurr }: Props) => {
