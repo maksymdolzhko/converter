@@ -2,6 +2,7 @@ import Image from "next/image";
 import Card from '../../public/card.png';
 import HeroBg from '../../public/hero.png';
 import { Path } from "@/constants/path";
+import Link from "next/link";
 export default function Hero(){
     return(
     <div className="overflow-hidden relative py-20">
@@ -26,12 +27,12 @@ export default function Hero(){
                 Qui irure qui lorem cupidatat commodo.
               </p>
               <div className="mt-10 flex">
-                <a
+                <Link
                   href={Path.CONVERTOR}
                   className="rounded-md bg-[#F6F7FF] text-[#707C87] hover:bg-[#ffffff] hover:text-gray-900 px-3.5 py-2.5 text-sm font-semibold shadow-sm"
                 >
                   Конвертер валют
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-center">
