@@ -12,7 +12,7 @@ interface IFormProps {
   handlerAmount: (param: string) => void;
   handlerCurrency: (param: AppCurrency) => void;
 }
-// e: ChangeEvent<HTMLInputElement>
+
 const ValueForm = ({
   label = "",
   disabledInput = false,
