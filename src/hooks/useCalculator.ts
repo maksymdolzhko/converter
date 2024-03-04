@@ -5,7 +5,7 @@ import { uniqInd } from "@/utils";
 import { useEffect, useMemo, useState } from "react";
 
 export const useCalculator = (defaultData: CurrencyResponse) =>{
-    
+    console.log('defaultData')
     const [firstRender, setFirstRender] = useState<boolean>(true);
     const { balance, changeBalance } = useCurrency((state) => ({
       balance: state.balance,
@@ -90,7 +90,7 @@ export const useCalculator = (defaultData: CurrencyResponse) =>{
         calculated, 
         balanceCurr,
         purchaseCurr,
-        dataCurrency,
+        dataCurrency: !dataCurrency? defaultData: dataCurrency,
 
         handlerChangeDate,
         handlerChangeBalance,

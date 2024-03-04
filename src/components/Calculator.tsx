@@ -10,95 +10,29 @@ import { uniqInd } from "@/utils";
 import Rate from "./Rate";
 import Button from "@/components/Button";
 import InputDate from "@/components/InputDate";
-
-/**
- * Todo:
- * import { useCalculator } from "@/hooks/useCalculator";
- * const {} = useCalculator(defaultData);
-*/
+import { useCalculator } from "@/hooks/useCalculator";
 
 interface CalculatorProps {
   defaultData: CurrencyResponse;
 }
 
 const Calculator = ({ defaultData }: CalculatorProps) => {
-  const [firstRender, setFirstRender] = useState<boolean>(true);
-  const { balance, changeBalance } = useCurrency((state) => ({
-    balance: state.balance,
-    changeBalance: state.changeBalance,
-  }));
-  const { togglePareCurr } = useCurrency((state) => ({
-    togglePareCurr: state.togglePareCurr,
-  }));
-  const { balanceCurr, changeBalanceCurr } = useCurrency((state) => ({
-    balanceCurr: state.balanceCurr,
-    changeBalanceCurr: state.changeBalanceCurr,
-  }));
-  const { purchaseCurr, changePurchaseCurr } = useCurrency((state) => ({
-    purchaseCurr: state.purchaseCurr,
-    changePurchaseCurr: state.changePurchaseCurr,
-  }));
-  const { date, changeDate } = useCurrency((state) => ({
-    date: state.date,
-    changeDate: state.changeDate,
-  }));
-  const { dataCurrency, fetchCurrency, fetchCurrencyByDate } = useCurrency(
-    (state) => ({
-      dataCurrency: state.dataCurrency,
-      fetchCurrency: state.fetchCurrency,
-      fetchCurrencyByDate: state.fetchCurrencyByDate,
-    })
-  );
+  const {
+    date,
+    balance,
+    calculated, 
+    balanceCurr,
+    purchaseCurr,
+    dataCurrency,
 
-  const { addHistory } = useCurrencyHistory((state) => ({
-    addHistory: state.addHistory,
-  }));
-
-  useEffect(() => {
-    if (!firstRender) {
-      fetchCurrency(balanceCurr, purchaseCurr);
-    }
-    return () => {
-      if (firstRender) {
-        setFirstRender(false);
-      }
-    };
-  }, [balanceCurr, purchaseCurr]);
-
-  useEffect(() => {
-    if (!firstRender) {
-      fetchCurrencyByDate(purchaseCurr, date);
-    }
-    return () => {
-      if (firstRender) {
-        setFirstRender(false);
-      }
-    };
-  }, [date]);
-
-  const handlerChangeDate = (value: string) => changeDate(value);
-  const handlerChangeBalance = (value: string) => changeBalance(Number(value));
-  const handlerChangeBalanceCurr = (value: AppCurrency) =>
-    changeBalanceCurr(value);
-  const handlerChangePurchaseCurr = (value: AppCurrency) =>
-    changePurchaseCurr(value);
-  const handlerToggle = () => togglePareCurr();
-  const handlerUpdate = () => updateCurrency();
-  const handlerSave = (): void =>
-    addHistory({
-      id: uniqInd(),
-      balance,
-      purchase: Number(calculated),
-      date,
-      balanceCurr,
-      purchaseCurr,
-    });
-
-  const calculated = useMemo(() => {
-    const actualData = !dataCurrency ? defaultData : dataCurrency;
-    const rate = actualData.conversion_rate;
-    return (rate * balance).toFixed(2);
-  }, [balance, balanceCurr, dataCurrency]);
+    handlerChangeDate,
+    handlerChangeBalance,
+    handlerChangeBalanceCurr,
+    handlerChangePurchaseCurr,
+    handlerUpdate,
+    handlerSave,
+    handlerToggle,
+  } = useCalculator(defaultData);
 
   return (
     <div className="bg-[#F6F7FF] py-12">
@@ -108,7 +42,7 @@ const Calculator = ({ defaultData }: CalculatorProps) => {
         </h2>
 
         <Rate
-          data={!dataCurrency ? defaultData : dataCurrency}
+          data={dataCurrency}
           balanceCurr={balanceCurr}
           purchaseCurr={purchaseCurr}
           handlerUpdate={handlerUpdate}
