@@ -2,15 +2,11 @@
 import Image from "next/image";
 import ValueForm from "@/components/ValueForm";
 import Arrows from "/public/arrows.svg";
-import { useEffect, useMemo, useState } from "react";
-import { AppCurrency, CurrencyResponse } from "@/types";
-import updateCurrency from "@/api/actions";
-import { useCurrency, useCurrencyHistory } from "@/store";
-import { uniqInd } from "@/utils";
 import Rate from "./Rate";
 import Button from "@/components/Button";
 import InputDate from "@/components/InputDate";
 import { useCalculator } from "@/hooks/useCalculator";
+import { CurrencyResponse } from "@/types";
 
 interface CalculatorProps {
   defaultData: CurrencyResponse;
